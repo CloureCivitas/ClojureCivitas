@@ -1,8 +1,8 @@
 # Clojure Civitas
 
-<img src="notebooks/images/civitas-icon.svg" alt="Civitas Icon" align="right">
+<img src="src/images/civitas-icon.svg" alt="Civitas Icon" align="right">
 
-An open effort to structure learning resources with meaningful connections.
+Your scratchpad
 
 ⚡ No setup – Clone this repo, make a new namespace, start coding.
 
@@ -26,11 +26,12 @@ See [About Clojure Civitas](https://clojurecivitas.github.io/about).
 Your perspective matters.
 Pull Requests invited, that's the point!
 
-### Creating notebooks
+### Creating posts and pages
 
-Add a Clojure namespace or markdown file in the [`/notebooks`](notebooks) folder.
+Add a Clojure namespace or markdown file in the [`/src`](src) folder.
 
 Add metadata on your namespace to set the title, author, and tags.
+
 ```clojure
 ^{:kindly/hide-code true                 ; don't show this code in the notebook
   :clay             {:title  "About Civitas Metadata"
@@ -59,7 +60,7 @@ unless a different image is listed in the metadata.
  :many-others ["see the examples" "creative uses" "visual variety"]}
 ```
 
-**Optional:** [Setup your editor with Clay shortcuts](https://scicloj.github.io/clay/#setup) to visualize the notebook as you write.
+**Optional:** [Set up your editor with Clay shortcuts](https://scicloj.github.io/clay/#setup) to visualize the notebook as you write.
 
 **Optional:** Preview the final website.
 
@@ -92,6 +93,7 @@ Publicly available [page view analytics](https://clojurecivitas.goatcounter.com/
 
 ### Building the database
 
+An open effort to structure learning resources with meaningful connections.
 Add to or modify [db.edn](quarto/db.edn).
 The goal is to create a database of resources for learning.
 
@@ -160,19 +162,18 @@ Differentiation between posts, pages, and presentations is by `type` metadata (a
 
 ### File system organization
 
-| Directory   | Description                                                          |
-|-------------|----------------------------------------------------------------------|
-| `src`       | Code for building a website and database                             |
-| `notebooks` | Source root for notebooks (Clojure and Markdown), images, data files |
-| `site`      | Static assets of the Quarto website                                  |
+| Directory | Description                                                          |
+|-----------|----------------------------------------------------------------------|
+| `src`     | Source root for notebooks (Clojure and Markdown), images, data files |
+| `site`    | Static assets of the Quarto website                                  |
 
-Non-Clojure files in `notebooks` will be synced to `site`.
-Shared images can go in `images`, but prefer placing images and data files as siblings to your namespace under
-`notebooks`.
-All Clojure and Non-Clojure files in `notebooks` should go under a subdirectory,
+Non-Clojure files in `src` will be synced to `site`.
+Shared images can go in `src/images`,
+but prefer placing images and data files as siblings to your namespace under `src`.
+All files in `src` should go under a subdirectory,
 so that it is clear they are not part of the static configuration of `site`.
-When building the site, Clojure namespaces are built to markdown files under `site/{my/namespaced/notebook.qmd}`.
-Subdirectories of `site` are gitignored and considered temporary build artifacts, safe to clean up.
+Clojure namespaces are built to markdown files under `site/{my/namespaced/notebook.qmd}`.
+Subdirectories of `site` are git ignored and considered temporary build artifacts, safe to clean up.
 Quarto builds all the markdown into HTML in `_site` for preview and deploy.
 While developing, Clay uses `temp` to build and serve HTML files.
 
